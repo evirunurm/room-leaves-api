@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-
+const dbManagement = require("app/utils/db.management");
 const PORT = process.env.PORT || 8080;
+
 // Create express Main application
 const app = express();
 
@@ -9,20 +10,22 @@ const app = express();
 app.use(express.urlencoded({
   extended: true
 }));
-
 app.use(express.json());
+
+// Sync database with server
+const db = require("./app/db");
+db.sequelize.sync();
+
+// Simple route
+app.get("/", (req, res) => {
+    res.sendFile("Room Leaves API");
+})
 
 // Importing express router modules
 const plants = require('./app/routes/plants.routes');
 const clients = require('./app/routes/clients.routes');
 // const categories = require('');
 // const orders = require('');
-
-
-// Simple route
-app.get("/", (req, res) => {
-    res.sendFile("Room Leaves API");
-})
 
 // Loading router modules
 app.use('/plants', plants);

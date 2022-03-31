@@ -11,8 +11,10 @@ module.exports = (sequelize, Sequelize) => {
             },
             name : {
                 type: Sequelize.STRING,
-                primaryKey: true,
-                autoIncrement: true
+                allowNull: false
+            },
+            description : {
+                description: Sequelize.TEXT
             }
         },
         {

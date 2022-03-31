@@ -3,11 +3,11 @@ const router = express.Router;
 const categories = require(""); // Here will go categories database controller
 
 // GET
-// Finds a specific category
-router.get("/:id", categories.findOne);
-
 // Finds all categories
 router.get("/", categories.findAll);
+
+// Finds a specific category
+router.get("/:id", categories.findOne);
 
 
 // POST
