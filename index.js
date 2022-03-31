@@ -17,7 +17,7 @@ db.sequelize.sync();
 
 // Simple route
 app.get("/", (req, res) => {
-    res.sendFile("Room Leaves API");
+    res.send("Room Leaves API");
 })
 
 // Importing express router modules
