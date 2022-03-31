@@ -1,28 +1,30 @@
-const express = require("express");
-const router = express.Router;
-const categories = require("../controllers/categories.controller"); // Here will go categories database controller
+module.exports = app => {
+    let router = require("express").Router();
+    const categories = require("../controllers/categories.controller"); // Here will go categories database controller
 
-// GET
-// Finds all categories
-router.get("/", categories.findAll);
+    // GET
+    // Finds all categories
+    router.get("/", categories.findAll);
 
-// Finds a specific category
-router.get("/:id", categories.findOne);
-
-
-// POST
-// Create new category
-router.post("/", categories.create);
-
-// Update category's data
-router.put("/:id", categories.update);
+    // Finds a specific category
+    router.get("/:id", categories.findOne);
 
 
-// DELETE
-// Remove all the categories
-router.delete("/", categories.deleteAll);
+    // POST
+    // Create new category
+    router.post("/", categories.create);
 
-// Remove a specific category
-/*router.delete("/:id", categories.delete);*/
+    // Update category's data
+    router.put("/:id", categories.update);
 
-module.exports = router;
+
+    // DELETE
+    // Remove all the categories
+    router.delete("/", categories.deleteAll);
+
+    // Remove a specific category
+    /*router.delete("/:id", categories.delete);*/
+
+    app.use("/categories", router);
+}
+

@@ -23,13 +23,12 @@ app.get("/", (req, res) => {
 // Importing express router modules
 /*const plants = require('./app/routes/plants.routes');*/
 /*const clients = require('./app/routes/clients.routes');*/
-const categories = require('./app/routes/categories.routes');
+require("./app/routes/categories.routes")(app);
 // const orders = require('');
 
 // Loading router modules
 // app.use('/plants', plants);
 // app.use('/clients', clients);
-app.use('/categories', categories);
 // app.use('/orders', orders);
 
 // Listen for requests
