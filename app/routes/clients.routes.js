@@ -4,21 +4,21 @@ const clients = require(""); // Here will go the clients database controller
 
 // GET
 
-// Finds one
+// Finds a specific client
 router.get("/:id", clients.findOne);
 
 // POST
-// Create new plant
+// Create new client
 router.post("/", clients.create);
 
-// Update plant's data
+// Update client's data
 router.put("/:id", clients.update);
 
 // DELETE
-// Remove all the plants
+// Remove all the clients
 router.delete("/", clients.deleteAll);
 
-// Remove a specific plant
+// Remove a specific client
 router.delete("/:id", clients.delete);
 
 // Export router, so it can be "used" in the Main app, where it's imported.

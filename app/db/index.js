@@ -13,10 +13,10 @@ const sequelize = new Sequelize(DB_CONFIG.DB_NAME, DB_CONFIG.USERNAME, DB_CONFIG
     }
 });
 
-// Create the database instance??
+// Create the database object
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// Attach .plants to the database instance
-db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
+// Attach .plants to the database object and execute Plant Model, passing both Sequelize instances (connected to the database) as parameters.
+db.categories = require("./categories.model.js")(sequelize, Sequelize);

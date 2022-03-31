@@ -16,7 +16,6 @@ create table plants(
     model_id varchar(20),
     description text,
     name varchar(20) not null unique,
-    creationdate date not null,
     price double not null,
     humidity int check(humidity >= 0 and humidity <= 100),
     temperature int,
