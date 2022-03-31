@@ -2,7 +2,7 @@ const config = {
     HOST: process.env.DB_HOST,
     USERNAME: process.env.DB_USER,
     PASSWORD: process.env.DB_PASSWORD,
-    DB_NAME: process.env.DB_NAME.DB,
+    DB_NAME: process.env.DB_NAME,
     dialect: "mysql",
     pool: {
         max: 5,
