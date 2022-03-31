@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router;
-const categories = require(""); // Here will go categories database controller
+const categories = require("../controllers/categories.controller"); // Here will go categories database controller
 
 // GET
 // Finds all categories
@@ -23,6 +23,6 @@ router.put("/:id", categories.update);
 router.delete("/", categories.deleteAll);
 
 // Remove a specific category
-router.delete("/:id", categories.delete);
+/*router.delete("/:id", categories.delete);*/
 
 module.exports = router;

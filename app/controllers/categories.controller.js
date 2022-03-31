@@ -75,7 +75,7 @@ exports.update = (req, res) => {
             });
         } else {
             res.send({
-                message: "Coulnd't upadte. Category not found"
+                message: "Coulnd't update. Category not found"
             });
         }
     } catch (err) {
