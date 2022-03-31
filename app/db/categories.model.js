@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
     const Categories = sequelize.define("Category",
         {
             id : {
-                type: Sequelize.INT,
+                type: Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true
             },

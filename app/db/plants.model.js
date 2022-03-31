@@ -5,17 +5,17 @@ module.exports = (sequelize, Sequelize) => {
     const Plants = sequalize.define("Plant",
         {
             id: {
-                type: Sequelize.INT,
+                type: Sequelize.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
             },
             stock: {
-                type: Sequelize.INT,
+                type: Sequelize.INTEGER,
                 defaultValue: 20,
                 allowNull: false
             },
             score: {
-                type: Sequelize.INT,
+                type: Sequelize.INTEGER,
                 defaultValue: 0,
                 validate: {
                     min: 0,
@@ -35,17 +35,17 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false
             },
             humidity: {
-                type: Sequelize.INT,
+                type: Sequelize.INTEGER,
                 validate: {
                     max: 100,
                     min: 0
                 }
             },
             temperature: {
-                type: Sequelize.INT
+                type: Sequelize.INTEGER
             },
             height: {
-                type: Sequelize.INT,
+                type: Sequelize.INTEGER,
                 allowNull: false
             }
         },
