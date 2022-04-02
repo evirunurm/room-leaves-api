@@ -6,7 +6,7 @@ const Operators = db.Sequelize.Op;
 exports.findAll = async (req, res) => {
     let where, query = {};
     let order = [];
-
+    // TODO: order doesnt work
     // Filter with "order"
     if (req.params.ordertype || req.params.orderattr) {
         let ordertype = req.params.ordertype;
@@ -52,7 +52,7 @@ exports.findOne = async (req, res) => {
 exports.create = async (req, res) => {
     // Validate req body.
     if ( !req.body.stock || !req.body.name || !req.body.price || !req.body.height ) {
-        res.send(400).send({
+        res.code(400).send({
             message: "There are some parameters left without passing"
         });
         return;
@@ -64,6 +64,11 @@ exports.create = async (req, res) => {
     // Includes:
     // stock NN, description, name NN, price NN, humidity, temperature, height NN
     for (const param in req.body) {
+        if (param == "height" || param == "price") {
+            // TODO: check
+            plant[param] = parseFloat(req.body[param]);
+            continue;
+        }
          plant[param] = req.body[param];
     }
 
@@ -80,13 +85,13 @@ exports.create = async (req, res) => {
 
 // PUT
 exports.update = async (req, res) => {
-    if ( !req.body.id ) {
-         res.send(400).send({
+    if ( !req.params.id ) {
+         res.code(400).send({
             message: "You must pass an id"
         });
          return;
     }
-    let id = req.body.id;
+    let id = req.params.id;
 
     try {
         let data = await Plants.update(req.body, {

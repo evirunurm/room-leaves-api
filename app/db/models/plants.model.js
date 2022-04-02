@@ -37,7 +37,7 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.INTEGER
             },
             height: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.DOUBLE(6, 2),
                 allowNull: false
             }
         },
