@@ -29,7 +29,7 @@ exports.findAll = async (req, res) => {
         let data = await Plants.findAll(query);
         res.send(data);
     } catch (err) {
-        res.code(500).send({
+        res.status(500).send({
             message: err.message || "An error has occurred while loading"
         });
     }
@@ -42,7 +42,7 @@ exports.findOne = async (req, res) => {
         let data = await Plants.findByPk(id)
         res.send(data);
     } catch (err) {
-        res.code(500).send({
+        res.status(500).send({
             message: err.message || "An error has occurred with plant " + id
         });
     }
@@ -52,7 +52,7 @@ exports.findOne = async (req, res) => {
 exports.create = async (req, res) => {
     // Validate req body.
     if ( !req.body.stock || !req.body.name || !req.body.price || !req.body.height ) {
-        res.code(400).send({
+        res.status(400).send({
             message: "There are some parameters left without passing"
         });
         return;
@@ -76,7 +76,7 @@ exports.create = async (req, res) => {
         let data = await Plants.create(plant);
         res.send(data);
     } catch (err) {
-        res.code(500).send({
+        res.status(500).send({
             message: err.message || "An error has occurred while creating plant " + id
         });
     }
@@ -86,7 +86,7 @@ exports.create = async (req, res) => {
 // PUT
 exports.update = async (req, res) => {
     if ( !req.params.id ) {
-         res.code(400).send({
+         res.status(400).send({
             message: "You must pass an id"
         });
          return;
@@ -99,7 +99,6 @@ exports.update = async (req, res) => {
                 id : id
             }
         });
-
         if (data == 1) {
             res.send({
                 message: "Plant updated"
@@ -109,9 +108,8 @@ exports.update = async (req, res) => {
                 message: "Coulnd't update. Maybe plant wasn't found"
             });
         }
-
     } catch (err) {
-        res.code(500).send({
+        res.status(500).send({
             message: err.message || "An error has occurred while updating plant " + id
         });
     }
@@ -125,14 +123,14 @@ exports.deleteAll = async (req, res) => {
             truncate: false
         });
     } catch (err) {
-        res.code(500).send({
+        res.status(500).send({
             message: err.message || "An error has occurred while deleting all plants"
         });
     }
 }
 
 exports.delete = async (req, res) => {
-    let id =  req.body.id;
+    let id =  req.params.id;
 
     try {
         Plants.destroy({
@@ -142,7 +140,7 @@ exports.delete = async (req, res) => {
             truncate: false
         });
     } catch (err) {
-        res.code(500).send({
+        res.status(500).send({
             message: err.message || "An error has occurred while deleting plant " + id
         });
     }

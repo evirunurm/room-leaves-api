@@ -67,7 +67,6 @@ exports.update = async (req, res) => {
                 id: id
             }
         });
-
         if (data == 1) {
             res.send({
                 message: "Category updated"
