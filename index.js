@@ -20,16 +20,11 @@ app.get("/", (req, res) => {
     res.send("Room Leaves API");
 })
 
-// Importing express router modules
-/*const plants = require('./app/routes/plants.routes');*/
-/*const clients = require('./app/routes/clients.routes');*/
+// Initializing express router modules
 require("./app/routes/categories.routes")(app);
-// const orders = require('');
-
-// Loading router modules
-// app.use('/plants', plants);
-// app.use('/clients', clients);
-// app.use('/orders', orders);
+require("./app/routes/plants.routes")(app);
+// require("./app/routes/clients.routes")(app); TODO: uncomment
+// require("./app/routes/orders.routes")(app); TODO: uncomment
 
 // Listen for requests
 app.listen(PORT, () => {

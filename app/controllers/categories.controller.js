@@ -1,6 +1,5 @@
 const db = require("../db");
 const Categories = db.categories;
-const Operators = db.Sequelize.Op;
 
 // GET
 exports.findAll = async (req, res) => {
@@ -59,11 +58,11 @@ exports.create = async (req, res) => {
 }
 
 // PUT
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
     const id = req.params.id;
 
     try {
-        let data = Categories.update(req.body, {
+        let data = await Categories.update(req.body, {
             where: {
                 id: id
             }
@@ -75,7 +74,7 @@ exports.update = (req, res) => {
             });
         } else {
             res.send({
-                message: "Coulnd't update. Category not found"
+                message: "Coulnd't update. Maybe category wasn't found"
             });
         }
     } catch (err) {
@@ -85,7 +84,7 @@ exports.update = (req, res) => {
     }
 }
 
-exports.deleteAll = (req, res) => {
+exports.deleteAll = async (req, res) => {
     Categories.destroy({
         where: {},
         truncate: false

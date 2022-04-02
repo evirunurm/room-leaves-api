@@ -14,16 +14,8 @@ module.exports = (sequelize, Sequelize) => {
                 defaultValue: 20,
                 allowNull: false
             },
-            score: {
-                type: Sequelize.INTEGER,
-                defaultValue: 0,
-                validate: {
-                    min: 0,
-                    max: 5
-                }
-            },
             description: {
-                type: Sequelize.TEXT,
+                type: Sequelize.STRING,
             },
             name: {
                 type: Sequelize.STRING,
@@ -56,7 +48,6 @@ module.exports = (sequelize, Sequelize) => {
             comment: "Plants stored for selling."
         }
     );
-
 
     return Plants;
 }

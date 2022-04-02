@@ -19,8 +19,8 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // Attach .plants to the database object and execute Plant Model, passing both Sequelize instances (connected to the database) as parameters.
-db.categories = require("./categories.model.js")(sequelize, Sequelize);
-/*db.plants = require("./plants.model.js")(sequelize, Sequelize);*/
+db.categories = require("./models/categories.model.js")(sequelize, Sequelize);
+db.plants = require("./models/plants.model.js")(sequelize, Sequelize);
 
 // Create Associations between tables.
 /*db.plants.hasOne(db.categories);*/
