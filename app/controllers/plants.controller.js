@@ -50,8 +50,8 @@ exports.findOne = async (req, res) => {
 
 // POST
 exports.create = async (req, res) => {
-    // Validate req params.
-    if ( !req.params.stock || !req.params.name || !req.params.price || !req.params.height ) {
+    // Validate req body.
+    if ( !req.body.stock || !req.body.name || !req.body.price || !req.body.height ) {
         res.send(400).send({
             message: "There are some parameters left without passing"
         });
@@ -59,12 +59,12 @@ exports.create = async (req, res) => {
     }
 
     let plant = {}
-    let id = req.params.id;
+    let id = req.body.id;
 
     // Includes:
     // stock NN, description, name NN, price NN, humidity, temperature, height NN
-    for (const param in req.params) {
-         plant[param] = req.params[param];
+    for (const param in req.body) {
+         plant[param] = req.body[param];
     }
 
     try {
@@ -80,13 +80,13 @@ exports.create = async (req, res) => {
 
 // PUT
 exports.update = async (req, res) => {
-    if ( !req.params.id ) {
+    if ( !req.body.id ) {
          res.send(400).send({
             message: "You must pass an id"
         });
          return;
     }
-    let id = req.params.id;
+    let id = req.body.id;
 
     try {
         let data = await Plants.update(req.body, {
@@ -127,7 +127,7 @@ exports.deleteAll = async (req, res) => {
 }
 
 exports.delete = async (req, res) => {
-    let id =  req.params.id;
+    let id =  req.body.id;
 
     try {
         Plants.destroy({
