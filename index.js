@@ -13,9 +13,7 @@ app.use(express.json());
 
 // Sync database with server
 const db = require("./app/db");
-db.sequelize.sync({
-    force: true
-});
+db.sequelize.sync();
 
 // Simple route
 app.get("/", (req, res) => {
@@ -28,7 +26,7 @@ require("./app/routes/plants.routes")(app);
 // require("./app/routes/clients.routes")(app); TODO: uncomment
 // require("./app/routes/orders.routes")(app); TODO: uncomment
 
-db.categories.hasOne(db.plants);
+db.plants.belongsTo(db.categories, { as: "category" });
 
 // Listen for requests
 app.listen(PORT, () => {
