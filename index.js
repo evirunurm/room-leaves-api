@@ -26,6 +26,8 @@ require("./app/routes/plants.routes")(app);
 // require("./app/routes/clients.routes")(app); TODO: uncomment
 // require("./app/routes/orders.routes")(app); TODO: uncomment
 
+db.plants.hasOne(db.categories);
+
 // Listen for requests
 app.listen(PORT, () => {
     console.log(`Server running on port ${ PORT }`);
