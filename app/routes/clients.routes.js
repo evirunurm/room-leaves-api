@@ -1,25 +1,29 @@
-const express = require('express');
-const router = express.Router();
-const clients = require(""); // Here will go the clients database controller
+module.exports = app => {
+    const router = require('express').Router();
+    const clients = require("../controllers/clients.controller"); // Here will go the clients database controller
 
-// GET
+    // GET
 
-// Finds a specific client
-router.get("/:id", clients.findOne);
+    // Finds all clients
+    router.get("/", clients.findAll);
 
-// POST
-// Create new client
-router.post("/", clients.create);
+    // Finds a specific client
+    router.get("/:id", clients.findOne);
 
-// Update client's data
-router.put("/:id", clients.update);
+    // POST
+    // Create new client
+    router.post("/", clients.create);
 
-// DELETE
-// Remove all the clients
-router.delete("/", clients.deleteAll);
+    // Update client's data
+    router.put("/:id", clients.update);
 
-// Remove a specific client
-router.delete("/:id", clients.delete);
+    // DELETE
+    // Remove all the clients
+    router.delete("/", clients.deleteAll);
 
-// Export router, so it can be "used" in the Main app, where it's imported.
-module.exports = router;
+    // Remove a specific client
+    router.delete("/:id", clients.delete);
+
+    // Export router, so it can be "used" in the Main app, where it's imported.
+    app.use(router);
+}

@@ -23,10 +23,11 @@ app.get("/", (req, res) => {
 // Initializing express router modules
 require("./app/routes/categories.routes")(app);
 require("./app/routes/plants.routes")(app);
-// require("./app/routes/clients.routes")(app); TODO: uncomment
+require("./app/routes/clients.routes")(app);
 // require("./app/routes/orders.routes")(app); TODO: uncomment
 
-db.plants.belongsTo(db.categories, { as: "category" });
+db.plants.belongsTo(db.categories, {as: "category"}); // categoryId
+
 
 // Listen for requests
 app.listen(PORT, () => {
