@@ -2,7 +2,7 @@ module.exports = (sequelize, Sequelize) => {
 
     // Table creation for Plants
     // sequelize.define returns the Model, that's why we're collecting the return into Plants constant, and returning it to be assigned to the bd object.
-    const Plants = sequalize.define("Plant",
+    const Plants = sequelize.define("Plant",
         {
             id: {
                 type: Sequelize.INTEGER,
