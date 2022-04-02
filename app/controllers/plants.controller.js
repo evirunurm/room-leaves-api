@@ -117,14 +117,16 @@ exports.update = async (req, res) => {
 
 // DELETE
 exports.deleteAll = async (req, res) => {
-    try {
-        Plants.destroy({
+
+   try {
+        let data = await Plants.destroy({
             where: {},
             truncate: false
         });
+        res.send( data + " plants deleted successfully" );
     } catch (err) {
         res.status(500).send({
-            message: err.message || "An error has occurred while deleting all plants"
+            message: err.message || "An error has occurred while deleting plant " + id
         });
     }
 }
@@ -133,12 +135,21 @@ exports.delete = async (req, res) => {
     let id =  req.params.id;
 
     try {
-        Plants.destroy({
+        let data = await Plants.destroy({
             where: {
                 id: id
             },
             truncate: false
         });
+        if (data == 1) {
+            res.send({
+                message: "Plant deletes successfully"
+            });
+        } else {
+            res.send({
+                message: "Coulnd't delte. Maybe plant wasn't found"
+            });
+        }
     } catch (err) {
         res.status(500).send({
             message: err.message || "An error has occurred while deleting plant " + id

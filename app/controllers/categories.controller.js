@@ -84,10 +84,19 @@ exports.update = async (req, res) => {
 }
 
 exports.deleteAll = async (req, res) => {
-    Categories.destroy({
-        where: {},
-        truncate: false
-    })
+
+    try {
+        let data = await Categories.destroy({
+            where: {},
+            truncate: false
+        });
+        res.send( data + " categories deleted successfully" )
+    } catch (err) {
+        res.status(500).send({
+            message: err.message || "An error occurred while deleting tutorials"
+        })
+    }
+
 }
 
 
