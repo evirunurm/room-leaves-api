@@ -24,8 +24,8 @@ create table plants(
     constraint plants_category foreign key (category) references category(id)
 );
 
-# Create clients table. To include: Favorites and scores
-create table clients(
+# Create users table. To include: Favorites and scores
+create table users(
 	id int primary key AUTO_INCREMENT,
     fullname varchar(100) not null,
     address varchar(255),
@@ -40,12 +40,12 @@ create table orders(
     plant int not null,
     datetime datetime(100) not null,
     state enum("Pending", "Processing", "Completed", "Cancelled") default "Pending",
-    constraint orders_clients foreign key (client) references clients(id),
+    constraint orders_users foreign key (client) references users(id),
     constraint orders_plants foreign key (plant) references plants(id),
     constraint pk_orders primary key (id, client, plant)
 );
 
-# Create table to store scores given by clients to plants.
+# Create table to store scores given by users to plants.
 create table scores(
 	client int not null,
     plant int not null,

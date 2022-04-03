@@ -1,28 +1,28 @@
 module.exports = app => {
     const router = require('express').Router();
-    const clients = require("../controllers/clients.controller"); // Here will go the clients database controller
+    const users = require("../controllers/users.controller"); // Here will go the users database controller
 
     // GET
 
-    // Finds all clients
-    router.get("/", clients.findAll);
+    // Finds all users
+    router.get("/", users.findAll);
 
     // Finds a specific client
-    router.get("/:id", clients.findOne);
+    router.get("/:id", users.findOne);
 
     // POST
     // Create new client
-    router.post("/", clients.create);
+    router.post("/", users.create);
 
     // Update client's data
-    router.put("/:id", clients.update);
+    router.put("/:id", users.update);
 
     // DELETE
-    // Remove all the clients
-    router.delete("/", clients.deleteAll);
+    // Remove all the users
+    router.delete("/", users.deleteAll);
 
     // Remove a specific client
-    router.delete("/:id", clients.delete);
+    router.delete("/:id", users.delete);
 
     // Export router, so it can be "used" in the Main app, where it's imported.
     app.use(router);

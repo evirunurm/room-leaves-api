@@ -1,2 +1,2 @@
 const db = require("../db")
-const Clients = db.clients;
+const Clients = db.users;
