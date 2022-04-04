@@ -15,19 +15,21 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false
             },
             address: {
-                type: Sequelize.TEXT,
+                type: Sequelize.TEXT
             },
             email: {
                 type: Sequelize.STRING,
-                allowNull: false
+                allowNull: false,
+                unique: true
             },
-            hash: {
+            password: {
                 type: Sequelize.STRING(200),
                 allowNull: false
             },
             salt: {
-                type: Sequelize.STRING(200),
-                allowNull: false
+                type: Sequelize.STRING(200)
+                // Commenting this in case it gives an error when salt if not passed from the beginning.
+                // allowNull: false
             }
         },
         {

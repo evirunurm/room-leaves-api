@@ -65,7 +65,6 @@ exports.create = async (req, res) => {
     // stock NN, description, name NN, price NN, humidity, temperature, height NN
     for (const param in req.body) {
         if (param == "height" || param == "price") {
-            // TODO: check
             plant[param] = parseFloat(req.body[param]);
             continue;
         }
@@ -99,7 +98,7 @@ exports.update = async (req, res) => {
                 id : id
             }
         });
-        if (data == 1) {
+        if (data === 1) {
             res.send({
                 message: "Plant updated"
             });
@@ -126,7 +125,7 @@ exports.deleteAll = async (req, res) => {
         res.send( data + " plants deleted successfully" );
     } catch (err) {
         res.status(500).send({
-            message: err.message || "An error has occurred while deleting plant " + id
+            message: err.message || "An error has occurred while deleting plants"
         });
     }
 }
@@ -141,7 +140,7 @@ exports.delete = async (req, res) => {
             },
             truncate: false
         });
-        if (data == 1) {
+        if (data === 1) {
             res.send({
                 message: "Plant deletes successfully"
             });

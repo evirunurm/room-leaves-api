@@ -3,7 +3,6 @@ module.exports = app => {
     const users = require("../controllers/users.controller"); // Here will go the users database controller
 
     // GET
-
     // Finds all users
     router.get("/", users.findAll);
 
@@ -16,6 +15,9 @@ module.exports = app => {
 
     // Update client's data
     router.put("/:id", users.update);
+
+    // Validate client
+    router.put("/login", users.login);
 
     // DELETE
     // Remove all the users
