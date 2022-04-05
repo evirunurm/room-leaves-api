@@ -14,7 +14,12 @@ app.use(cors())
 
 // Sync database with server
 const db = require("./app/db");
-db.sequelize.sync();
+try {
+    db.sequelize.sync();
+} catch (err) {
+    console.log(err.message);
+}
+
 
 // Simple route
 app.get("/", (req, res) => {

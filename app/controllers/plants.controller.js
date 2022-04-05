@@ -59,7 +59,6 @@ exports.create = async (req, res) => {
     }
 
     let plant = {}
-    let id = req.body.id;
 
     // Includes:
     // stock NN, description, name NN, price NN, humidity, temperature, height NN

@@ -125,7 +125,6 @@ exports.deleteAll = async (req, res) => {
 }
 
 exports.delete = async (req, res) => {
-    // TODO: Has to be logged in
     let id =  req.params.id;
 
     try {
