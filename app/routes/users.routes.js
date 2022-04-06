@@ -27,5 +27,5 @@ module.exports = app => {
     router.delete("/:id", users.delete);
 
     // Export router, so it can be "used" in the Main app, where it's imported.
-    app.use(router);
+    app.use("/users", router);
 }

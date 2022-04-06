@@ -16,19 +16,9 @@ exports.findAll = async (req, res) => {
 
 exports.findOne = async (req, res) => {
     const id = req.params.id;
-    const email = req.params.email;
 
     try {
-        let data
-        if (id) {
-            data = await Users.findByPk(id)
-        } else if (email) {
-            data = await Users.findOne({
-                where: {
-                    email: email
-                }
-            })
-        }
+        let data = await Users.findByPk(id)
         res.send(data);
     } catch (err) {
         res.status(500).send({
@@ -48,8 +38,7 @@ exports.create = async (req, res) => {
 
     const user = {
         full_name: req.body.fullname,
-        address: req.body.email,
-        email: req.body.password ? req.body.password : null,
+        email: req.body.email,
         password: req.body.password
     }
 

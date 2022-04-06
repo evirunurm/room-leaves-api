@@ -49,4 +49,6 @@ module.exports = (sequelize, Sequelize) => {
     Clients.prototype.validPassword = async function(password) {
         return await bcrypt.compare(password, this.password);
     }
+
+    return Clients;
 }
