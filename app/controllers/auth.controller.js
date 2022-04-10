@@ -4,6 +4,7 @@ const Users = db.users;
 const Op = db.Sequelize.Op;
 let jwt = require("jsonwebtoken");
 let bcrypt = require("bcrypt");
+const DAY = 1000 * 60 * 60 * 24;
 
 
 // GET
@@ -40,13 +41,24 @@ exports.login = async (req, res) => {
             });
         }
 
+        let token = jwt.sign(
+            { id: user.id },
+            config.secret,
+            { expiresIn: DAY }
+        );
 
+        res.status(200).send({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          accessToken: token
+        });
 
     } catch (err) {
-
+        res.status(500).send({
+            message: err.message || "An unrecognized error has occurred."
+        });
     }
-
-
 }
 
 exports.signup = async (req, res) => {

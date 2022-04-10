@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const config = require("../auth/auth.config");
 
+
 verifyToken = (req, res, next) => {
     let token;
     const autHeader = req.headers["Authorization"];
@@ -15,7 +16,7 @@ verifyToken = (req, res, next) => {
         token = autHeader.substring(7, autHeader.length);
     } else {
         res.status(401).send({
-            message: "Authentication failed. Check that the Authorization header follows the Bearer format."
+            message: "Authentication failed. Check that the Authorization header follows the Bearer schema."
         });
     }
 

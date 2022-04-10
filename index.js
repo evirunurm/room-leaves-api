@@ -3,7 +3,7 @@ const cors = require("cors");
 
 // Constants
 const PORT = process.env.PORT || 80;
-const DAY = 1000 * 60 * 60 * 24;
+
 
 // Create express Main application
 const app = express();
@@ -37,6 +37,7 @@ app.get("/", (req, res) => {
 require("./app/routes/categories.routes")(app);
 require("./app/routes/plants.routes")(app);
 require("./app/routes/users.routes")(app);
+require("./app/routes/auth.routes")(app);
 // require("./app/routes/orders.routes")(app); TODO: uncomment
 
 db.plants.belongsTo(db.categories, {as: "category"}); // categoryId
