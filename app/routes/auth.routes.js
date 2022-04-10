@@ -17,12 +17,12 @@ module.exports = app => {
 
     // POST
     // Create new user
-    router.post("/login",[
-        verifySignUp.checkDuplicateEmail
-    ], auth.login);
+    router.post("/login", auth.login);
 
     // Create new user
-    router.post("/signup", auth.signup);
+    router.post("/signup", [
+        verifySignUp.checkDuplicateEmail
+    ], auth.signup);
 
     // Update user's data
     // router.put("/:id/update", auth.update);

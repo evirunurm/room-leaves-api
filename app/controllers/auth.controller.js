@@ -79,7 +79,7 @@ exports.signup = async (req, res) => {
         res.send("Your profile was created successfully.");
     } catch (err) {
          res.status(500).send({
-            message: err.message || "An error has occurred while creating user with email " + req.body.email
+            message: "An error has occurred while creating user with email " + req.body.email
         });
     }
 }
