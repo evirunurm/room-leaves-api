@@ -13,25 +13,33 @@ module.exports = app => {
     });
 
     // GET
+    // TODO: Delete, TEST only
     // Finds all users
     router.get("/", users.findAll);
 
     // Finds a specific client
-    router.get("/:id", users.findOne);
-
-    // POST
-    // Create new client
-    router.post("/", users.create);
+    router.post("/:id", [
+        authJwt.verifyToken
+    ], users.findOne);
 
     // Update client's data
-    router.put("/:id", users.update);
+    router.put("/:id", [
+        authJwt.verifyToken
+    ], users.update);
+
+    // Remove a specific client
+    router.delete("/:id", [
+        authJwt.verifyToken
+    ], users.delete);
+
+    // TODO: Delete
+   /* // POST
+    // Create new client
+    router.post("/", users.create);*/
 
     // DELETE
     // Remove all the users
     router.delete("/", users.deleteAll);
-
-    // Remove a specific client
-    router.delete("/:id", users.delete);
 
     // Export router, so it can be "used" in the Main app, where it's imported.
     app.use("/users", router);

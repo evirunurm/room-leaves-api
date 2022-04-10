@@ -18,7 +18,9 @@ exports.login = async (req, res) => {
 
     try {
         let user = await Users.findOne({
-            email: req.body.email,
+            where : {
+                email: req.body.email,
+            }
         });
 
         // Filter non existent user
