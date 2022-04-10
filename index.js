@@ -18,7 +18,6 @@ app.use(express.json());
 // Cors enabled for *. From development only.
 app.use(cors())
 
-
 // Sync database with server
 const db = require("./app/db");
 

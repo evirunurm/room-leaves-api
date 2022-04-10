@@ -6,12 +6,6 @@ let jwt = require("jsonwebtoken");
 let bcrypt = require("bcrypt");
 const DAY = 1000 * 60 * 60 * 24;
 
-
-// GET
-exports.logout = async (req, res) => {
-
-}
-
 // POST
 exports.login = async (req, res) => {
     // Log in to the site
@@ -22,7 +16,7 @@ exports.login = async (req, res) => {
                 email: req.body.email,
             }
         });
-
+        console.log("here")
         // Filter non existent user
         if (!user) {
             return res.status(404).send({
@@ -57,6 +51,7 @@ exports.login = async (req, res) => {
         });
 
     } catch (err) {
+        console.log(err)
         res.status(500).send({
             message: err.message || "An unrecognized error has occurred."
         });
@@ -65,6 +60,7 @@ exports.login = async (req, res) => {
 
 exports.signup = async (req, res) => {
     // Save User to Database
+    console.log(req.body)
     if ( !req.body.fullname || !req.body.email || !req.body.password ) {
          res.status(400).send({
             message: "You must include all required fields"

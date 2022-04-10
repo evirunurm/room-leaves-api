@@ -4,8 +4,7 @@ const config = require("../auth/auth.config");
 
 verifyToken = (req, res, next) => {
     let token;
-    const autHeader = req.headers["Authorization"];
-
+    const autHeader = req.headers["authorization"];
     if (!autHeader) {
         return res.status(403).send({
           message: "No token provided"
