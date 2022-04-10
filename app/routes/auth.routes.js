@@ -19,5 +19,5 @@ module.exports = app => {
     // Remove a user
     router.delete("/:id", auth.delete);
 
-    app.use("/", router);
+    app.use("/auth", router);
 }

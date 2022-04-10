@@ -1,6 +1,4 @@
 const express = require("express");
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 // Constants
@@ -19,23 +17,7 @@ app.use(express.urlencoded({
 app.use(express.json());
 // Cors enabled for *. From development only.
 app.use(cors())
-// 1. Checks for cookies with specified name.
-// If found: Looks up its value in the store. Then it will populate req.session.
-// If not found / value not found in store: Creates new value for specified name and a new req.session.
-// "saveUninitialized:false" --> It won't be saved to the store unless changed
-// 2. If req.session is changed, it gets saved to the store and a cookie gets created in res.
-app.use(session({
-    secret: process.env.SESSIONSECRET,
-    name: "",
-    cookie: {
-        maxAge: DAY
-    },
-    resave: false,
-    saveUninitialized: true,
 
-}));
-// So that the server can save/read/access a cookie.
-app.use(cookieParser());
 
 // Sync database with server
 const db = require("./app/db");
