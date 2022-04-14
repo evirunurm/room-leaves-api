@@ -37,7 +37,7 @@ require("./app/routes/categories.routes")(app);
 require("./app/routes/plants.routes")(app);
 require("./app/routes/users.routes")(app);
 require("./app/routes/auth.routes")(app);
-// require("./app/routes/orders.routes")(app); TODO: uncomment
+require("./app/routes/orders.routes")(app);
 
 db.plants.belongsTo(db.categories, {as: "category"}); // categoryId
 

@@ -13,9 +13,9 @@ module.exports = app => {
     });
 
     // GET
-    // TODO: Delete, TEST only
+/*    // TODO: Delete, TEST only
     // Finds all users
-    router.get("/", users.findAll);
+    router.get("/", users.findAll);*/
 
     // Finds a specific client
     router.post("/:id", [
