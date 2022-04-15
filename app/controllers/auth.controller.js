@@ -82,12 +82,6 @@ exports.signup = async (req, res) => {
     }
 }
 
-// PUT
-exports.update = async (req, res) => {
 
-}
 
-// DELETE
-exports.delete = async (req, res) => {
 
-}

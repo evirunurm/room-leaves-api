@@ -4,29 +4,8 @@ const Operators = db.Sequelize.Op;
 
 // GET
 exports.findAll = async (req, res) => {
-    let where, query = {};
-    let order = [];
-    // TODO: order doesnt work
-    // Filter with "order"
-    if (req.params.ordertype || req.params.orderattr) {
-        let ordertype = req.params.ordertype;
-        let ordertypeArr = ordertype.split(",");
-        ordertypeArr.forEach(type => {
-            order.push([type, req.params.orderattr ? req.params.orderattr : 'DESC'])
-        });
-        query.order = order;
-    }
-
-    // Filter with "where"
-    if (req.params.id) {
-        where.id = req.params.id;
-        query.where = where;
-    }
-
-    // TODO: Get "recent" with timestamps
-
     try {
-        let data = await Plants.findAll(query);
+        let data = await Plants.findAll();
         res.send(data);
     } catch (err) {
         res.status(500).send({

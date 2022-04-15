@@ -18,12 +18,21 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// Attach .plants to the database object and execute Plant Model, passing both Sequelize instances (connected to the database) as parameters.
+// Attach table abstractions to the database object and execute each Model, passing both Sequelize instances (connected to the database) as parameters.
 db.categories = require("./models/categories.model.js")(sequelize, Sequelize);
 db.plants = require("./models/plants.model.js")(sequelize, Sequelize);
 db.users = require("./models/users.model.js")(sequelize, Sequelize);
+db.orders = require("./models/orders.model.js")(sequelize, Sequelize);
+db.orderDetails = require("./models/orderDetails.model.js")(sequelize, Sequelize);
 
 // Create Associations between tables.
-/*db.plants.hasOne(db.categories);*/
+try {
+    db.categories.hasOne(db.plants);
+    db.users.hasOne(db.orders);
+    db.orders.hasOne(db.orderDetails);
+    db.plants.hasOne(db.orderDetails);
+} catch (err) {
+    console.log(err.message)
+}
 
 module.exports = db;
