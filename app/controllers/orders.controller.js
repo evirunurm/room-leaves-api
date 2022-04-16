@@ -21,23 +21,15 @@ exports.findAll = async (req, res) => {
         });
 
         for (let i = 0; i < ordersData.length; i++) {
-            ordersData[i].dataValues.details = await OrderDetails.findAll({
+            ordersData[i].dataValues["details"] = await OrderDetails.findAll({
                 where: {
-                    orderId : ordersData[i].dataValues.id
+                    orderId : ordersData[i].id
                 }
             });
-            console.log(ordersData[i].dataValues.details.length);
-
-            ordersData[i].dataValues.details.forEach( orderDetail => {
-                console.log(orderDetail.plantId);
-            })
-
-           /* for (let j = 0; j < ordersData[i].dataValues.details.length; j++) {
-                console.log(ordersData[i].dataValues.details[i].plantId)
-            }*/
-
-
-
+            // Get plant data for each Order Detail, so it doesn't have to be fetched again.
+            for (let j = 0; j < ordersData[i].dataValues["details"].length; j++) {
+                ordersData[i].dataValues.details[j].dataValues["plantData"] = await Plants.findByPk(ordersData[i].dataValues.details[j].dataValues.plantId);
+            }
         }
 
         res.send(ordersData);

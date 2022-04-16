@@ -10,6 +10,9 @@ module.exports = (sequelize, Sequelize) => {
         discount: {
             type: Sequelize.DOUBLE(6, 2),
         },
+        state: {
+            type: Sequelize.ENUM("Completed", "Pending", "Processing")
+        }
 
     },{
         timestamps: true,
