@@ -25,14 +25,4 @@ db.users = require("./models/users.model.js")(sequelize, Sequelize);
 db.orders = require("./models/orders.model.js")(sequelize, Sequelize);
 db.orderDetails = require("./models/orderDetails.model.js")(sequelize, Sequelize);
 
-// Create Associations between tables.
-try {
-    db.categories.hasOne(db.plants);
-    db.users.hasOne(db.orders);
-    db.orders.hasOne(db.orderDetails);
-    db.plants.hasOne(db.orderDetails);
-} catch (err) {
-    console.log(err.message)
-}
-
 module.exports = db;

@@ -40,6 +40,11 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/orders.routes")(app);
 
 db.plants.belongsTo(db.categories, {as: "category"}); // categoryId
+db.users.hasOne(db.orders, { as: "client", foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+db.orders.hasOne(db.orderDetails, { as: "order", foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+db.plants.hasOne(db.orderDetails, { as: "plant", foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+
+
 
 
 // Listen for requests

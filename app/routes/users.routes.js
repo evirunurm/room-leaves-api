@@ -27,19 +27,6 @@ module.exports = app => {
         authJwt.verifyToken
     ], users.delete);
 
-    // TODO: Delete
-    // GET
-    // Finds all users
-   /* router.get("/", users.findAll);*!/*/
-
-   /* // POST
-    // Create new client
-    router.post("/", users.create);*/
-
-    // DELETE
-    // Remove all the users
-    /*router.delete("/", users.deleteAll);*/
-
     // Export router, so it can be "used" in the Main app, where it's imported.
     app.use("/users", router);
 }

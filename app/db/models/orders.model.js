@@ -7,10 +7,6 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
-        total: {
-            type: Sequelize.DOUBLE(6, 2),
-            allowNull: false
-        },
         discount: {
             type: Sequelize.DOUBLE(6, 2),
         },

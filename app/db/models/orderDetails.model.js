@@ -6,6 +6,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false
         },
+        price: {
+            type: Sequelize.DOUBLE(6, 2),
+            allowNull: false
+        },
 
     },{
         timestamps: true,
