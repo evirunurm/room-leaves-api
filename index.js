@@ -39,6 +39,7 @@ require("./app/routes/users.routes")(app);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/orders.routes")(app);
 require("./app/routes/scores.routes")(app);
+require("./app/routes/favorites.routes")(app);
 
 db.plants.belongsTo(db.categories); // categoryId
 db.users.hasOne(db.orders, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
@@ -48,6 +49,9 @@ db.plants.hasOne(db.orderDetails, { foreignKey: { allowNull: false }, onDelete: 
 
 db.plants.hasOne(db.scores, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 db.users.hasOne(db.scores, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+
+db.plants.hasOne(db.favorites, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+db.users.hasOne(db.favorites, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
 // Listen for requests
 app.listen(PORT, () => {

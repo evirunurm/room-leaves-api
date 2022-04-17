@@ -25,5 +25,6 @@ db.users = require("./models/users.model.js")(sequelize, Sequelize);
 db.orders = require("./models/orders.model.js")(sequelize, Sequelize);
 db.orderDetails = require("./models/orderDetails.model.js")(sequelize, Sequelize);
 db.scores = require("./models/scores.model.js")(sequelize, Sequelize);
+db.favorites = require("./models/favorites.model.js")(sequelize, Sequelize);
 
 module.exports = db;

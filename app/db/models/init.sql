@@ -15,7 +15,7 @@ insert into plants(name, description, stock, price, height, temperature, humidit
 ;
 
 insert into users(full_name, email, password, salt, created_at, updated_at) values
-("Admin", "admin@gmail.com","$2b$10$jGzjeTwEoXcscrZK7A1GB.8hC/sFKE09OeWsiO52pgjtcszzZ81h2", "$2b$10$jGzjeTwEoXcscrZK7A1GB.", now(), now())
+("Admin", "admin@gmail.comcategories","$2b$10$jGzjeTwEoXcscrZK7A1GB.8hC/sFKE09OeWsiO52pgjtcszzZ81h2", "$2b$10$jGzjeTwEoXcscrZK7A1GB.", now(), now())
 ;
 
 insert into orders(discount, state, client_id, created_at, updated_at) values
@@ -40,6 +40,7 @@ insert into scores(value, message, plant_id, client_id, created_at, updated_at) 
 (4, "It's a very good plant!!! You should by it.", 3, 1, now(), now()),
 (5, "It's a noice plant! Give it a try.", 4, 1, now(), now())
 ;
+
 
 
 
