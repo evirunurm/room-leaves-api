@@ -22,7 +22,7 @@ app.use(cors())
 const db = require("./app/db");
 
 try {
-    db.sequelize.sync({/*force:true*/});
+    db.sequelize.sync({force:true});
 } catch (err) {
     console.log("There's been an error while syncing the database. Probably the connection failed.");
 }
@@ -38,14 +38,16 @@ require("./app/routes/plants.routes")(app);
 require("./app/routes/users.routes")(app);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/orders.routes")(app);
+require("./app/routes/scores.routes")(app);
 
-db.plants.belongsTo(db.categories, {as: "category"}); // categoryId
-db.users.hasOne(db.orders, { as: "client", foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
-db.orders.hasOne(db.orderDetails, { as: "order", foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
-db.plants.hasOne(db.orderDetails, { as: "plant", foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+db.plants.belongsTo(db.categories); // categoryId
+db.users.hasOne(db.orders, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
+db.orders.hasOne(db.orderDetails, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+db.plants.hasOne(db.orderDetails, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
-
+db.plants.hasOne(db.scores, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+db.users.hasOne(db.scores, { foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
 // Listen for requests
 app.listen(PORT, () => {

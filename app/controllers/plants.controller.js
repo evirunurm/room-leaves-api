@@ -1,12 +1,28 @@
 const db = require("../db");
 const Plants = db.plants;
-const Operators = db.Sequelize.Op;
+const Scores = db.scores;
+const Users = db.users;
 
 // GET
 exports.findAll = async (req, res) => {
     try {
-        let data = await Plants.findAll();
-        res.send(data);
+        let dataPlants = await Plants.findAll();
+
+         for (let i = 0; i < dataPlants.length; i++) {
+            dataPlants[i].dataValues["scores"] = await Scores.findAll({
+                where: {
+                    plantId : dataPlants[i].id
+                }
+            });
+
+            // Get user data for each Order Detail, so it doesn't have to be fetched again.
+            for (let j = 0; j < dataPlants[i].dataValues["scores"].length; j++) {
+                let client = await Users.findByPk(dataPlants[i].dataValues.scores[j].dataValues.clientId);
+                dataPlants[i].dataValues.scores[j].dataValues["clientName"] = client.dataValues["full_name"];
+            }
+        }
+
+        res.send(dataPlants);
     } catch (err) {
         res.status(500).send({
             message: err.message || "An error has occurred while loading"
@@ -18,8 +34,22 @@ exports.findOne = async (req, res) => {
     const id = req.params.id;
 
     try {
-        let data = await Plants.findByPk(id)
-        res.send(data);
+        let dataPlant = await Plants.findByPk(id)
+
+        dataPlant.dataValues["scores"] = await Scores.findAll({
+            where: {
+                plantId : dataPlant.id
+            }
+        });
+
+        // Get user data for each Order Detail, so it doesn't have to be fetched again.
+        for (let j = 0; j < dataPlant.dataValues["scores"].length; j++) {
+            let client = await Users.findByPk(dataPlant.dataValues.scores[j].dataValues.clientId);
+            dataPlant.dataValues.scores[j].dataValues["clientName"] = client.dataValues["full_name"];
+        }
+
+
+        res.send(dataPlant);
     } catch (err) {
         res.status(500).send({
             message: err.message || "An error has occurred with plant " + id

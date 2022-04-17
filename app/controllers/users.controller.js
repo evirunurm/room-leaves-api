@@ -10,6 +10,7 @@ exports.findOne = async (req, res) => {
          });
          return;
     }
+
     if (req.userId !== parseInt(req.params.id)) {
         res.status(403).send({
             message: "You are trying to access resources you have no authorization for."
@@ -29,7 +30,6 @@ exports.findOne = async (req, res) => {
 
 // PUT
 exports.update = async (req, res) => {
-
 
     // Has to be logged in
     if ( !req.userId ) {

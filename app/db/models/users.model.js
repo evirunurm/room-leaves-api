@@ -3,7 +3,7 @@ const saltRounds = 10;
 
 module.exports = (sequelize, Sequelize) => {
 
-    const Clients = sequelize.define("Client",
+    const Clients = sequelize.define("client",
         {
             id: {
                 type: Sequelize.INTEGER,

@@ -34,4 +34,12 @@ insert into order_details(order_id, plant_id, amount, price, created_at, updated
 ;
 
 
+insert into scores(value, message, plant_id, client_id, created_at, updated_at) values
+(2, "A meh plant. I'd prefer it to be white...", 1, 1, now(), now()),
+(1, "Just horrible...", 2, 1, now(), now()),
+(4, "It's a very good plant!!! You should by it.", 3, 1, now(), now()),
+(5, "It's a noice plant! Give it a try.", 4, 1, now(), now())
+;
+
+
 
