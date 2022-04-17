@@ -16,7 +16,6 @@ exports.login = async (req, res) => {
                 email: req.body.email,
             }
         });
-        console.log("here")
         // Filter non existent user
         if (!user) {
             return res.status(404).send({

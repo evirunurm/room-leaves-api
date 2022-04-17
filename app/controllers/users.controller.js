@@ -1,5 +1,6 @@
 const db = require("../db")
 const Users = db.users;
+const bcrypt = require("bcrypt");
 
 // POST
 exports.findOne = async (req, res) => {
@@ -28,6 +29,8 @@ exports.findOne = async (req, res) => {
 
 // PUT
 exports.update = async (req, res) => {
+
+
     // Has to be logged in
     if ( !req.userId ) {
          res.status(401).send({
@@ -44,12 +47,35 @@ exports.update = async (req, res) => {
     }
 
     try {
-        let data = await Users.update(req.body, {
+        let user = await Users.findOne({
+            where : {
+                id: req.userId
+            }
+        });
+
+        let validPassword = await bcrypt.compare(
+            req.body.password,
+            user.password
+        );
+
+        // Filter invalid password
+        if (!validPassword) {
+            return res.status(401).send({
+                message: "Invalid Password"
+            });
+        }
+
+        let data = await Users.update({
+            full_name: req.body.fullname,
+            email: req.body.email,
+            address: req.body.address,
+        }, {
             where: {
                 id: req.userId
             }
         });
-        if (data === 1) {
+
+        if (data[0] === 1) {
             res.send({
                 message: "User updated"
             });

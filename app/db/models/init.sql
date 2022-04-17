@@ -26,7 +26,7 @@ insert into orders(discount, state, client_id, created_at, updated_at) values
 ;
 
 insert into order_details(order_id, plant_id, amount, price, created_at, updated_at) values
-(1, 1, 2, 15.99, now(), now()),
+(1, 1, 2, 15.98, now(), now()),
 (1, 2, 1, 15.99,now(), now()),
 (2, 1, 2, 15.99, now(), now()),
 (3, 3, 1, 12.99, now(), now()),
