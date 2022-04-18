@@ -7,12 +7,30 @@ module.exports = (sequelize, Sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
-        discount: {
-            type: Sequelize.DOUBLE(6, 2),
+        total: {
+            type: Sequelize.DOUBLE(6,2),
+            allowNull: false
         },
         state: {
-            type: Sequelize.ENUM("Completed", "Pending", "Processing")
-        }
+            type: Sequelize.ENUM("Completed", "Pending", "Processing"),
+            defaultValue: "Processing"
+        },
+        shippingMethod: {
+            type: Sequelize.ENUM("CE", "UPSE"),
+            allowNull: false
+        },
+        billingAddress: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        paymentMethod: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            validate: {
+                max: 2,
+                min: 1
+            }
+        },
 
     },{
         timestamps: true,

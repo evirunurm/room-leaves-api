@@ -20,7 +20,12 @@ exports.findOne = async (req, res) => {
 
     try {
         let data = await Users.findByPk(req.userId);
-        res.send(data);
+        /* DELETING THESE VALUES FOR SECURITY */
+        delete data.dataValues.password;
+        delete data.dataValues.salt;
+        delete data.dataValues.updatedAt;
+
+        res.send(data.dataValues);
     } catch (err) {
         res.status(500).send({
             message: "An error has occurred with user " + req.userId

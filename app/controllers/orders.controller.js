@@ -89,22 +89,30 @@ exports.create = async (req, res) => {
         return;
     }
 
-    let order = {
-        clientId: req.userId,
-        total: req.body.total,
-        discount: req.body.discount,
-    }
-
     try {
-        let data = await Orders.create(order);
         let orderDetail, plant, price;
         let totalPrice = 0;
-        let orderId = data.dataValues.id;
 
         for (let i = 0; i < details.length; i++) {
             plant = await Plants.findByPk(details[i].plantId);
             price = plant.dataValues.price;
             totalPrice += price * details[i].amount;
+        }
+
+        let order = {
+            clientId: req.userId,
+            total: totalPrice,
+            shippingMethod: req.body.shippingMethod,
+            billingAddress: req.body.billingAddress,
+            paymentMethod: req.body.paymentMethod,
+        }
+
+        let data = await Orders.create(order);
+        let orderId = data.dataValues.id;
+
+        for (let i = 0; i < details.length; i++) {
+            plant = await Plants.findByPk(details[i].plantId);
+            price = plant.dataValues.price;
 
             orderDetail = await OrderDetails.create({
                 ...details[i],
