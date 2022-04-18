@@ -15,7 +15,7 @@ insert into plants(name, description, stock, price, height, temperature, humidit
 ;
 
 insert into users(full_name, email, password, salt, created_at, updated_at) values
-("Admin", "admin@gmail.comcategories","$2b$10$jGzjeTwEoXcscrZK7A1GB.8hC/sFKE09OeWsiO52pgjtcszzZ81h2", "$2b$10$jGzjeTwEoXcscrZK7A1GB.", now(), now())
+("Admin", "admin@gmail.com","$2b$10$jGzjeTwEoXcscrZK7A1GB.8hC/sFKE09OeWsiO52pgjtcszzZ81h2", "$2b$10$jGzjeTwEoXcscrZK7A1GB.", now(), now())
 ;
 
 -- insert into orders(total, state, shipping_method, billing_address, payment_method, client_id, created_at, updated_at) values

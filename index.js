@@ -22,7 +22,7 @@ app.use(cors())
 const db = require("./app/db");
 
 try {
-    db.sequelize.sync({force:true});
+    db.sequelize.sync(/*{force:true}*/);
 } catch (err) {
     console.log("There's been an error while syncing the database. Probably the connection failed.");
 }
