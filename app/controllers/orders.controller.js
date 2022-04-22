@@ -119,6 +119,9 @@ exports.create = async (req, res) => {
                 orderId: orderId,
                 price: (price * details[i].amount)
             });
+            /* Subtracts from stock */
+            plant.stock = plant.stock - details[i].amount;
+            await plant.save();
         }
         res.send(data);
     } catch (err) {
