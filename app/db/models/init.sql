@@ -35,10 +35,10 @@ insert into users(full_name, email, password, salt, created_at, updated_at) valu
 
 
 insert into scores(value, message, plant_id, client_id, created_at, updated_at) values
-(2, "A meh plant. I'd prefer it to be white...", 4, 1, now(), now()),
-(1, "Just horrible...", 2, 1, now(), now()),
-(4, "It's a very good plant!!! You should by it.", 3, 1, now(), now()),
-(5, "It's a noice plant! Give it a try.", 4, 1, now(), now())
+(2, "A meh plant. I'd prefer it to be white...", 31, 1, now(), now()),
+(1, "Just horrible...", 11, 1, now(), now()),
+(4, "It's a very good plant!!! You should by it.", 21, 1, now(), now()),
+(5, "It's a noice plant! Give it a try.", 31, 1, now(), now())
 ;
 
 
